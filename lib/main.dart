@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
 import 'weather_service.dart';
+import 'about_page.dart';
 
 void main() {
   runApp(const WeatherApp());
@@ -310,13 +311,21 @@ class _WeatherHomePageState extends State<WeatherHomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text(
-          'Weather',
-          style: TextStyle(
-            fontWeight: FontWeight.bold,
+        title: const Text('Weather App'),
+        actions: [
+          IconButton(
+            icon: const Icon(Icons.info_outline),
+            tooltip: 'About',
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => const AboutScreen(),
+                ),
+              );
+            },
           ),
-        ),
-        centerTitle: true,
+        ],
       ),
       body: RefreshIndicator(
         onRefresh: getCurrentLocationWeather,
